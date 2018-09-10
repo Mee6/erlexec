@@ -482,9 +482,6 @@ void initialize(int userid, bool use_alt_fds, bool enable_suid)
             fprintf(stderr, "Initializing: uid=0, euid=%d, userid=%d%s\r\n",
                 getuid(), userid, enable_suid?" enable-suid":"");
 
-    } else if (getuid() == 0 && userid == 0) {
-        fprintf(stderr, "Not allowed to run as root without setting effective user (-user option)!\r\n");
-        exit(4);
     } else if (userid > 0 && int(getuid()) != userid) {
         fprintf(stderr, "Cannot switch effective user to euid=%d\r\n", userid);
         exit(4);
